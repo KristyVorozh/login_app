@@ -16,7 +16,7 @@ const ModalOpen: React.FC <IModal> = ({modal, setModal, setRecovery, setLogin, l
         setRecovery(false)
     }
     return (
-        <Modal isOpen={modal} >
+        <Modal ariaHideApp={false} isOpen={modal} >
             <p className='close' onClick={closeModal}>X</p>
             <div>Ваш пароль 123456</div>
         </Modal>

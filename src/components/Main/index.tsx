@@ -15,7 +15,16 @@ const Main = () => {
       if (login === '+7-111-111-11-11' && password === '123456') setStatus('Успешно')
       else setStatus('Логин/пароль не верный')
     }
-
+    const openModal = () => {
+      if (login) {
+          setModal(true)
+          setStatus('')
+      } else setStatus('Введите телефон')
+    }
+    const openRecovery = () => {
+        setRecovery(true)
+        setStatus('')
+    }
     return (
         <div className='main'>
             <div className="main_section">
@@ -25,14 +34,14 @@ const Main = () => {
                         <div className="main_input">
                             <div className="main_input-content">
                                 <p>Введите логин</p>
-                                <InputMask mask="+9-999-999-99-99" value={login || ''} onChange={(e: any)=>setLogin(e.target.value)}/>
+                                <InputMask mask="+7-999-999-99-99" value={login || ''} onChange={(e: any)=>setLogin(e.target.value)}/>
                             </div>
                             <div className="main_input-content">
                                 <p>Введите пароль</p>
                                 <input value={password || ''} onChange={(e) => setPassword(e.target.value)} type="password"/>
                             </div>
                         </div>
-                        <div onClick={()=>setRecovery(true)} className="main_recovery">
+                        <div onClick={openRecovery} className="main_recovery">
                             Забыли пароль?
                         </div>
                         {status &&
@@ -50,10 +59,13 @@ const Main = () => {
                         <div className='main_recovery-title'>Восстановление пароля</div>
                         <div className="main_input-content">
                             <p>Введите номер телефона</p>
-                            <InputMask mask="+9-999-999-99-99" value={login || ''} onChange={(e)=>setLogin(e.target.value)}/>
+                            <InputMask mask="+7-999-999-99-99" value={login || ''} onChange={(e)=>setLogin(e.target.value)}/>
                         </div>
                         <div className='main_callback' onClick={()=>setRecovery(false)}>назад</div>
-                        <button onClick={()=>setModal(true)}>
+                        {status &&
+                            <p>{status}</p>
+                        }
+                        <button onClick={openModal}>
                             ПОЗВОНИТЬ
                         </button>
                     </>
